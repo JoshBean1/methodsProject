@@ -6,7 +6,7 @@
     Micheal M:
     
     
-    Josh:
+    Josh: User Class, main.py
     
     
     Zach: Book and Movie Classes
