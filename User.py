@@ -8,6 +8,7 @@ class User:
         self.name = name
         self.payment_info = payment_info
         self.email = email
+        self._update()
 
     def login(self, username, password):
         with open('users.csv', 'r') as users_file:
@@ -20,17 +21,19 @@ class User:
 
     def change_name(self, name):
         self.name = name
+        self._update()
 
     def change_pass(self, password):
         self.password = password
-
+        self._update()
     def change_email(self, email):
         self.email = email
+        self._update()
 
     def user_cart(self, itemID, cartID):
         pass
 
-    def _update():  # write class to csv file
+    def _update(self):  # write class to csv file
         lines = []  # store csv in memory
         current_user = [self.ID, self.username, self.password, self.name, self.payment_info, self.email]
 
