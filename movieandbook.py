@@ -6,10 +6,14 @@ class Book():
         self.price = price
 
     def add_book_to_cart(self, ISBN, name, count, price):
-         return self.ID
-         return self.name
-         return self.count
-         return self.price
+        self.ID = ID
+        self.name = name
+        self.count = count
+        self.price = price
+        return self.ID
+        return self.name
+        return self.count
+        return self.price
 
 
 class Movie():
@@ -20,6 +24,10 @@ class Movie():
         self.price = price
 
     def add_movie_to_cart(self, ISBN, name, count, price):
+        self.ID = ID
+        self.name = name
+        self.count = count
+        self.price = price
         return self.ID
         return self.name
         return self.count
