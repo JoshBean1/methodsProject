@@ -1,34 +1,20 @@
 class Inventory():
 
-    def __init__ (self, itemID, count, title, itemPrice):
+    def __init__ (self, itemID, count, itemType, title, itemPrice):
         self.itemID = itemID
         self.count = count
+        self.itemType = itemType
         self.title = title
         self.itemPrice = itemPrice
-    
-    def getitemID(self):
-        return self.itemID
-        
-    def getcount(self):
-        return self.count
-        
-    def gettitle(self):
-        return self.title
-    def getitemPrice(self):
-        return self.itemPrice
-    
+   
     def change_count(self, itemID, count):
-        self.itemID = itemID
-        self.count = count
-        
-    def __int__(self):
-        return self.itemID + self.count
-        
+       self.itemID = itemID
+       self.count = count
+       return self.itemID + self.count
     def change_price(self, itemPrice, count):
-        self.itemID = itemPrice
-        self.newPrice = count
+        self.itemPrice = itemPrice
+        self.count = count
+        return self.itemPrice + self.count
         
-    def __int__(self):
-        return itemPrice + count
+    def veiew_all_items():
         
-    
