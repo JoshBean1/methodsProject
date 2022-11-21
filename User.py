@@ -1,14 +1,15 @@
 import csv
 
 class User:
-    def __init__(self, ID, username, password, name, payment_info, email):
+    def __init__(self, ID, username, password, name, payment_info, email, new=False):
         self.ID = ID
         self.username = username
         self.password = password
         self.name = name
         self.payment_info = payment_info
         self.email = email
-        self._update()
+        if new:
+            self._update()
 
     def login(self, username, password):
         with open('users.csv', 'r') as users_file:
