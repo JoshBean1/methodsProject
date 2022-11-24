@@ -197,7 +197,28 @@ while True:
                 break
         main_menu(current_user)
     elif selection == '2':
-        create_account()
+        name = input("Input Name: ")
+        username = input("Input Username: ")
+        email = input("Input email: ")
+        payment_info = input("Input payment info: ")
+        while True:
+            password = input("Input password: ")
+            confirm = input("Confirm password: ")
+            if password == confirm:
+                print("Success")
+                break
+            else:
+                print("Passwords do not match, try again")
+
+        user_list = []
+        with open('users.csv', 'r') as user_file:
+            lines = user_file.readlines()
+            for line in lines:
+                data = line.split(',')
+                user_list.append(int(data[0]))
+        new_ID = str(max(user_list) + 1)
+        new_user = User.User(new_ID, username, password, name, payment_info, email, new=True)
+        print("User created")
     elif selection == '3':
         break
     else:
