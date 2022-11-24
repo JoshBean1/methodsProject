@@ -34,6 +34,19 @@ class User:
     def user_cart(self, itemID, cartID):
         pass
 
+    def delete_account(self):
+        lines = []  # store csv in memory
+        current_user = [self.ID, self.username, self.password, self.name, self.payment_info, self.email]
+
+        with open('users.csv', 'r') as users_file:
+            users_read = csv.reader(users_file, delimiter=',')
+            for row in users_read:
+                if self.ID != row[0]:  # read all users into list except for current user
+                    lines.append(row)
+        with open('users.csv', 'w') as users_file:  # overwrite users.csv file with updated data
+            users_write = csv.writer(users_file, delimiter=',')
+            users_write.writerows(lines)  # old unchanged users
+
     def _update(self):  # write class to csv file
         lines = []  # store csv in memory
         current_user = [self.ID, self.username, self.password, self.name, self.payment_info, self.email]
