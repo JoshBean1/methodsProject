@@ -12,7 +12,7 @@ def login(USERNAME, PASS):  # if success, returns user class
         for line in lines:
 
             data = line.split(',')
-            user_list.append(User.User(data[0], data[1], data[2], data[3], data[4], data[5]))
+            user_list.append(User.User(data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
 
     current_user = None
 
@@ -51,23 +51,42 @@ def main_menu(current_user):
                 menu_user = {}
                 menu_user['1'] = "Change Shipping Information"
                 menu_user['2'] = "Change Payment Information"
-                menu_user['3'] = "Back"
+                menu_user['3'] = "Change name"
+                menu_user['4'] = "Change password"
+                menu_user['5'] = "Back"
                 print_menu(menu_user)
                 selection2 = input(">>")
 
                 if selection2 == '1':
-                    address = input("What's your shipping address")
+                    address = input("What's your shipping address: ")
+                    current_user.change_address(address)
                     print("Shipping address updated")
                 elif selection2 == '2':
-                    payment_info = input("Enter CC Number")
+                    payment_info = input("Enter CC Number: ")
+                    current_user.change_payment_info(payment_info)
                     print("Payment information updated")
                 elif selection2 == '3':
+                    name = input("Enter new name: ")
+                    current_user.change_name(name)
+                    print("Name updated")
+                elif selection2 == '4':
+                    while True:
+                        current_pass = input("Input current password or type 'cancel' to cancel: ")
+                        if current_pass == 'cancel':
+                            break
+                        elif current_pass == current_user.password:
+                            new_pass = input("Enter new password: ")
+                            current_user.change_pass(new_pass)
+                            break
+                        else:
+                            print("Incorrect password")
+                elif selection2 == '5':
                     break
                 else:
                     print("That is not an Option")
                     selection = input(menu)
 
-        if selection == '2':  # Cart information
+        elif selection == '2':  # Cart information
             menu_cart = {}
             menu_cart['1'] = "View Cart"
             menu_cart['2'] = "Add to Cart"
@@ -139,7 +158,7 @@ def main_menu(current_user):
                             print("Invalid selection")
 
                 elif selection == '3':
-                    buy_now = input("Would you like to checkout Y/N")
+                    buy_now = input("Would you like to checkout Y/N: ")
                     if buy_now == 'Y':
                         for books in cart:
                             books = books - books in cart  # check to see if this statement will work
@@ -152,16 +171,14 @@ def main_menu(current_user):
                         selection = input(menu_cart)
 
                 elif selection == '4':
-                    selection = input(menu)
-
-                elif selection == '5':
                     break
+
                 else:
                     print("Invalid selection")
 
         elif selection == '3': # logout
             logout = {}
-            logout = input("Are you sure you'd like to logout, Y/N")
+            logout = input("Are you sure you'd like to logout? Y/N")
             if logout == 'Y':
                 #current_user = None
                 break
@@ -170,9 +187,10 @@ def main_menu(current_user):
             exit()
 
         elif selection == '5':
-            acct_delete = input("Would you like to delete your account, Y/N")
+            acct_delete = input("Would you like to delete your account? Y/N: ")
             if acct_delete == 'Y':
                 current_user.delete_account()
+                break
 
         elif selection == '6':
             print(history)
@@ -194,6 +212,7 @@ while True:
             if current_user is None:
                 print("Invalid username or password")
             else:
+                print("Successful login\n")
                 break
         main_menu(current_user)
     elif selection == '2':
@@ -201,14 +220,8 @@ while True:
         username = input("Input Username: ")
         email = input("Input email: ")
         payment_info = input("Input payment info: ")
-        while True:
-            password = input("Input password: ")
-            confirm = input("Confirm password: ")
-            if password == confirm:
-                print("Success")
-                break
-            else:
-                print("Passwords do not match, try again")
+        address = input("Input shipping address: ")
+        password = input("Input password: ")
 
         user_list = []
         with open('users.csv', 'r') as user_file:
@@ -217,7 +230,7 @@ while True:
                 data = line.split(',')
                 user_list.append(int(data[0]))
         new_ID = str(max(user_list) + 1)
-        new_user = User.User(new_ID, username, password, name, payment_info, email, new=True)
+        new_user = User.User(new_ID, username, password, name, payment_info, address, email, new=True)
         print("User created")
     elif selection == '3':
         break
