@@ -37,3 +37,12 @@ def test_numbers_datatype():
 
 def test_numbers_both():
     assert numbers(2.2, 2) == 1.1
+    
+    
+####################### divide #################
+
+
+
+
+
+################ sq ######################
