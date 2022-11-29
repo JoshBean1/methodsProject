@@ -7,7 +7,7 @@ openFile() -- Josh
 numbers() -- Josh
 dist()
 isPalindrome()
-divide() -- Zach
+divide() -- 
 sq() -- Zach
 greetUser()
 displayItem()
