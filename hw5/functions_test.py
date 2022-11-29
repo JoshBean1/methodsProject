@@ -46,3 +46,14 @@ def test_numbers_both():
 
 
 ################ sq ######################
+def sq(num):
+    return math.sqrt(num)
+
+def test_sq():
+    assert sq(4) == 2
+
+def test_sq_2():
+    assert sq(81) == 9
+
+def test_sq_3():
+    assert sq(25) == 5
