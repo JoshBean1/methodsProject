@@ -55,20 +55,20 @@ class Cart:
     def add_item(self, item):
         # Check if cart is empty
         if (not (self.items)):
-            self.items.update(item)
+            self.items.update({item.get_ID():item})
         # Check new item's ID against other items currently in the cart
         for i in self.items:
             # If the new item's ID doesn't match the current checked item's ID, continue
-            if i.get_ID() != item.get_ID():
+            if i != item.get_ID():
                 continue
             # If the new Item's ID matches the current checked item's ID, add the new item's Amount to the checked item's Amount
             # and follow with a Return so the function completes
-            elif i.get_ID() == item.get_ID():
+            elif i == item.get_ID():
                 self.items[i].add_amnt(item.amnt)
                 return 1
             # If all items have been checked and no items' IDs match the new item's ID, add the new item to the end of the list
             if i == (self.items.len() - 1):
-                self.items.update(item)
+                self.items.update({item.get_ID(): item})
                 return 0
         return -1
 
@@ -76,7 +76,7 @@ class Cart:
     def get_num_items(self):
         total_items = 0
         for i in self.items:
-            total_items = total_items + i.get_amnt()
+            total_items = total_items + self.items[i].get_amnt()
         return total_items
 
     # Removes an item from the cart based on its position in the Cart List
@@ -85,9 +85,7 @@ class Cart:
 
     # Removes an item from the cart based on its Item ID
     def remove_item_ID(self, item_ID):
-        for i in self.items:
-            if (i.get_ID() == item_ID):
-                self.items.pop(i)
+        self.items.pop(item_ID)
         return
 
     # Clears all items from the cart, returns the number of items removed upon completion
