@@ -53,7 +53,7 @@ def test_sq():
     assert sq(4) == 2
 
 def test_sq_2():
-    assert sq(81) != 9
+    assert sq(81) != 10
 
 def test_sq_3():
     assert sq(25) == 5
