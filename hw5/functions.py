@@ -13,6 +13,9 @@ def openFile(filename):
 ## takes two numbers and returns
 ## the result of a division
 def numbers(num1, num2):
+    if num2 == 0:
+        print("Cannot divide by zero")
+        return
     try:
         return num1 / num2
     except:

@@ -34,8 +34,8 @@ def test_numbers_float():
 def test_numbers_datatype():
     assert numbers('abc', [1,2,3]) == None
 
-def test_numbers_both():
-    assert numbers(2.2, 2) == 1.1
+def test_numbers_zero():
+    assert numbers(2, 0) == None
 ##############################
     
 ####################### divide #################
