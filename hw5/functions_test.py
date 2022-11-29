@@ -22,7 +22,6 @@ def test_openFile_int():
 
 def test_openFile_wrong_name():
     assert openFile("test.txt") == None
-
 ##############################
 
 ########   numbers   #########
@@ -37,7 +36,7 @@ def test_numbers_datatype():
 
 def test_numbers_both():
     assert numbers(2.2, 2) == 1.1
-    
+##############################
     
 ####################### divide #################
 
