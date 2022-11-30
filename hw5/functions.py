@@ -50,6 +50,7 @@ def divide():
 
     print("Your numbers divided is:", div)
 
+
 ## returns the squareroot of a particular number
 def sq(num):
     return math.sqrt(num)
