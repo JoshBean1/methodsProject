@@ -10,7 +10,7 @@ isPalindrome()
 divide() -- 
 sq() -- Zach
 greetUser()
-displayItem()
+displayItem()--Zach
 '''
 
 ########   openFile   ########
@@ -56,3 +56,9 @@ def test_sq_2():
 
 def test_sq_3():
     assert sq(25) == 5
+
+def test_sq_4():
+    assert sq(0) != int
+
+def test_sq_5():
+    assert sq(bool(4.0)) == 1.0
