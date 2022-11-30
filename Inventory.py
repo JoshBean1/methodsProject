@@ -9,7 +9,7 @@ class Inventory:
     def dec_count(self):
         self.count -= 1
         
-    def __repr__(self): #view all items
+    def __str__(self): #view all items
         return str(self.book_list) + str(self.movie_list)
         
     def veiw_books(self):
