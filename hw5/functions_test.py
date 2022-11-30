@@ -54,6 +54,13 @@ def test_sq_2():
 
 def test_sq_3():
     assert sq(25) == 5
+    
+def test_sq_4():
+    assert sq(0) != int
+
+def test_sq_5():
+    assert sq(bool(4.0)) == 1.0
+
 
 
 ########   greetUser   ########
@@ -72,9 +79,4 @@ def test_greetUser_numbers(capsys):
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == "Invalid input, please use letters only"
 
-def test_sq_4():
-    assert sq(0) != int
-
-def test_sq_5():
-    assert sq(bool(4.0)) == 1.0
 
