@@ -43,17 +43,13 @@ def isPalindrome(temp):
 ## has input to receive two numbers
 ## divides the two, then outputs the result
 def divide():
-    try:
-        num1 = int(input("Enter a number: "))
-        num2 = int(input("Enter another number: "))
+    num1 = int(input("Enter a number: "))
+    num2 = int(input("Enter another number: "))
 
-        div = num1 / num2
+    div = num1 / num2
 
-        print("Your numbers divided is:", div)
-    except ZeroDivisionError:
-        print("\nYou tried to divide by zero.")
-    except:
-        print("\nAn error occurred")
+    print("Your numbers divided is:", div)
+
 
 ## returns the squareroot of a particular number
 def sq(num):
