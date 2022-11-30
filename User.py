@@ -37,9 +37,6 @@ class User:
         self.email = email
         self._update()
 
-    def view_cart(self, itemID, cartID):
-        pass
-
     def delete_account(self):
         lines = []  # store csv in memory
         #current_user = [self.ID, self.username, self.password, self.name, self.payment_info, self.address, self.email]

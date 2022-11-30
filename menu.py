@@ -167,6 +167,7 @@ def main_menu(current_user):
 
         elif selection == '4':  # checkout
             #cart.checkout()
+            #  add order to order_history.csv
             pass
 
         elif selection == '5':  # view order history
