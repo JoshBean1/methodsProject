@@ -3,7 +3,11 @@ from Inventory import Inventory
 from movieandbook import *
 from cart import Cart
 
-#inventory = Inventory()
+
+book_list = list()
+movie_list = list()
+
+
 
 def print_menu(menu):
     for key in menu:

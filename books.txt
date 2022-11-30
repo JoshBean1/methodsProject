@@ -1,0 +1,4 @@
+1,1984,3,10.00
+2,To Kill a Mockingbird,8,12.50
+3,Brave New World,2,8.50
+4,The Shining,4,15.00

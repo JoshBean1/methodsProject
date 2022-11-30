@@ -1,0 +1,4 @@
+1,Full Metal Jacket,12,6.75
+2,Planes Trains and Automobiles,2,9.99
+3,Spiderman,6,8.95
+4,The Avengers,9,15.00
