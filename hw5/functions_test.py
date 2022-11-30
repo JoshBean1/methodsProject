@@ -38,13 +38,13 @@ def test_numbers_zero():
     
 ##########dist###########
 def test_dist_1():
-	assert dist(2, 2, 4, 4) == 2
+    assert dist(2, 2, 4, 4) == math.sqrt(8)
 
 def test_dist_2():
-	assert dist(9, 3, 18, 10) == None
+    assert dist(9, 3, 18, 10) == math.sqrt(130)
 
 def test_dist_3(): 
-	assert dist(1, 0, 3, 8) == None
+    assert dist('1', 0, 3, 8) == None
 
 ########   isPalindrome   ########
 def test_isPalindrome():
@@ -74,7 +74,6 @@ def test_input_1(capsys, monkeypatch):
     divide()
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == "Your numbers divided is: 3.0"
-
 
 def geninputs_1():
     inputs = [12, 0]
