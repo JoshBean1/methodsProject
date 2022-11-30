@@ -35,7 +35,16 @@ def test_numbers_datatype():
 
 def test_numbers_zero():
     assert numbers(2, 0) == None
-##############################
+    
+##########dist###########
+def test_dist_1():
+	assert dist(2, 2, 4, 4) == 2
+
+def test_dist_2():
+	assert dist(9, 3, 18, 10) == None
+
+def test_dist_3(): 
+	assert dist(1, 0, 3, 8) == None
 
 ########   isPalindrome   ########
 def test_isPalindrome():

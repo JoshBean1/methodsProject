@@ -24,8 +24,12 @@ def numbers(num1, num2):
 ## takes in two points
 ## finds the distance between the points
 def dist(x1, y1, x2, y2):
-    dist = (x2 - x1) ** 2 + (y2 - y1) ** 2
-    dist = math.sqrt(dist)
+    try:
+        dist = (x2 - x1) ** 2 + (y2 - y1) ** 2
+        dist = math.sqrt(dist)
+        print("\nYour result is:", dist)
+    except:
+        print("\nAn error occurred")
 
     return dist
 
