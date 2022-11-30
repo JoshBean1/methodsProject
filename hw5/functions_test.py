@@ -113,7 +113,8 @@ def test_sq_4():
 def test_sq_5():
     assert sq(bool(4.0)) == 1.0
 
-
+def test_sq_6():
+    assert sq(9) == 3
 
 ########   greetUser   ########
 def test_greetUser(capsys):
