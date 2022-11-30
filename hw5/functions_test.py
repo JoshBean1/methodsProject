@@ -37,8 +37,14 @@ def test_numbers_zero():
 ##############################
     
 ####################### divide #################
+def test_divide_1():
+	assert divide(6,2) == 3
 
+def test_divide_2():
+	assert divide(12, 0) == None
 
+def test_divide_3():
+	assert divide('Hello') == None
 
 
 
