@@ -1,38 +1,24 @@
 class Inventory:
-
-    def __init__ (self, itemID, count, itemType, title, itemPrice):
-        self.itemID = itemID
-        self.count = count
-        self.itemType = itemType
-        self.title = title
-        self.itemPrice = itemPrice
-   
-    def change_count(self, itemID, count):
-       self.itemID = itemID
-       self.count = count
-       return self.itemID + self.count
-    def change_price(self, itemPrice, count):
-        self.itemPrice = itemPrice
-        self.count = count
-        return self.itemPrice + self.count
+    def __init__ (self, quantity):
+        self.quantity = quantity
+        self.book_list = []
+        self.movie_list = []
+    
+    def inc_count(self):
+       self.count += 1
+    def dec_count(self):
+        self.count -= 1
         
-    def view_all_items(self):
-        import os
-        files = [] #['movies' 'books']
-        merged_data = ""
-
-        while True:
-            f_name = input("Enter the file name: ")
-            files.append(f_name)
-            ans = input("Want to view another file?(y/n): ").lower()
-            if ans!='y':
-                break
-        for file in files:
-            filename = file + '.txt'
-            if os.path.isfile(filename):
-                f = open(filename, mode='r', encoding='utf-8')
-                merged_data = merged_data + f.read()
-                f.close() 
-        f.write(merged_data)
-        print("See all items in new list")
-
+    def __repr__(self): #veiw all items
+        return str(self.book_list) + str(self.movie_list)
+        
+    def veiw_books(self):
+        f = open("book.txt")
+        book_content = f.read()
+        print(book_content)
+        f.close()
+    def veiw_movies(self):
+        f =open("movie.txt")
+        movie_content = f.read()
+        print(movie_content)
+        f.close()
