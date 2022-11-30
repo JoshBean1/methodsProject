@@ -56,30 +56,33 @@ def test_isPalindrome_fail():
 
 ####################### divide #################
 def geninputs():
-    inputs = ["6", "2"]
+    inputs = [6, 2]
     for item in inputs:
         yield item
 GEN = geninputs()
-def test_input_1(monkeypatch):
+def test_input_1(capsys, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(GEN))
-    assert divide() == 3.0
+    divide()
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == "Your numbers divided is: 3.0"
 
-def geninputs():
-    inputs = ["12", "0"]
+
+def geninputs_1():
+    inputs = [12, 0]
     for item in inputs:
         yield item
-GEN = geninputs()
+GEN1 = geninputs_1()
 def test_input_2(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: next(GEN))
+    monkeypatch.setattr('builtins.input', lambda _: next(GEN1))
     assert divide() == None
 
-def geninputs():
+def geninputs_2():
     inputs = ["Hello"]
     for item in inputs:
         yield item
-GEN = geninputs()
+GEN2 = geninputs_2()
 def test_input_3(monkeypatch):
-    monkeypatch.setattr('builtins.imput', lambda _: next(GEN))
+    monkeypatch.setattr('builtins.input', lambda _: next(GEN2))
     assert divide() == None
 
 
