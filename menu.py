@@ -4,24 +4,6 @@ from movieandbook import *
 from cart import Cart
 
 
-book_list = list()
-movie_list = list()
-
-with open('books.txt', 'r') as book_file:
-    lines = book_file.readlines()
-    for line in lines:
-        data = line.split(',')
-        book_list.append(Book(data[0], data[1], data[2], data[3]))
-
-with open('movies.txt', 'r') as movie_file:
-    lines = movie_file.readlines()
-    for line in lines:
-        data = line.split(',')
-        movie_list.append(Movie(data[0], data[1], data[2], data[3]))
-
-inventory = Inventory(book_list, movie_list)
-
-
 def print_menu(menu):
     for key in menu:
         print(key + '. ' + menu[key])
@@ -34,7 +16,7 @@ def login(USERNAME, PASS):  # if success, returns user class
         for line in lines:
 
             data = line.split(',')
-            user_list.append(User(data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
+            user_list.append(User(data[0], data[1], data[2], data[3], data[4], data[5], data[6].replace('\n','')))
 
     current_user = None
 
@@ -46,6 +28,25 @@ def login(USERNAME, PASS):  # if success, returns user class
 
 
 def main_menu(current_user):
+    book_list = list()
+    movie_list = list()
+
+    with open('books.txt', 'r') as book_file:
+        lines = book_file.readlines()
+        for line in lines:
+            data = line.split(',')
+            book_list.append(Book(data[0], data[1], data[2], data[3]))
+
+    with open('movies.txt', 'r') as movie_file:
+        lines = movie_file.readlines()
+        for line in lines:
+            data = line.split(',')
+            movie_list.append(Movie(data[0], data[1], data[2], data[3]))
+
+    inventory = Inventory(book_list, movie_list)
+    cart = None  # cart class
+
+
     menu = {}
     menu['1'] = "Edit User Information"
     menu['2'] = "View/Edit Cart"
@@ -56,8 +57,6 @@ def main_menu(current_user):
     menu['7'] = "Exit Program"
     menu['8'] = "Delete Account"
 
-
-    cart = {}
 
 
     while True:
@@ -165,14 +164,14 @@ def main_menu(current_user):
                 selection = input(">> ")
 
                 if selection == '1':  # books
-                    #inventory.view_books()
+                    inventory.view_books()
                     print("Which book do you want to add to your cart? Or type 'cancel' to go back.")
                     toBuy = input(">> ")
                     if toBuy != "cancel":
                         pass  # cart.add_book or book.add_to_cart or something
 
                 elif selection == '2':  # movies
-                    #inventory.view_movies()
+                    inventory.view_movies()
                     print("Which movie do you want to add to your cart? Or type 'cancel' to go back.")
                     toBuy = input(">> ")
                     if toBuy != "cancel":
@@ -184,6 +183,7 @@ def main_menu(current_user):
 
         elif selection == '4':  # checkout
             #cart.checkout()
+
             #  add order to order_history.csv
             pass
 
