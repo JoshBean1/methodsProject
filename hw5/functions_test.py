@@ -43,8 +43,11 @@ def test_isPalindrome():
 def test_isPalindrome_false():
     assert isPalindrome('not a palindrome') == False
 
-def test_isPalindrome_datatype():
+def test_isPalindrome_nonstring():
     assert isPalindrome([1,2,1]) == None
+
+def test_isPalindrome_datatype():
+    assert isPalindrome({'1': 'test'}) == None
 
 def test_isPalindrome_fail():
     assert isPalindrome('abcdcba') == False
