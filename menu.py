@@ -1,8 +1,9 @@
 from User import User
 from Inventory import Inventory
 from movieandbook import *
-from cart import cart
+from cart import Cart
 
+#inventory = Inventory()
 
 def print_menu(menu):
     for key in menu:
@@ -174,7 +175,7 @@ def main_menu(current_user):
                     print(line)  # make this more pretty
 
         elif selection == '6': # logout
-            logout = input("Are you sure you'd like to logout? Y/N")
+            logout = input("Are you sure you'd like to logout? Y/N: ")
             if logout.lower() == 'y' or logout.lower() == 'yes':
                 #current_user = None
                 break
