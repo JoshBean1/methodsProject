@@ -7,6 +7,18 @@ from cart import Cart
 book_list = list()
 movie_list = list()
 
+with open('books.txt', 'r') as book_file:
+    lines = book_file.readlines()
+    for line in lines:
+        data = line.split(',')
+        book_list.append(Book(data[0], data[1], data[2], data[3]))
+
+with open('movies.txt', 'r') as movie_file:
+    lines = movie_file.readlines()
+    for line in lines:
+        data = line.split(',')
+        movie_list.append(Movie(data[0], data[1], data[2], data[3]))
+
 
 
 def print_menu(menu):
