@@ -14,10 +14,11 @@ class Inventory:
     def view_all(self):
         print("Books:")
         self.view_books()
-        print('\n')
+        print()
 
         print("Movies:")
         self.view_movies()
+        print()
 
     def checkoutBook(self, ID):
         for book in self.book_list:
