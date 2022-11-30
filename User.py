@@ -37,7 +37,7 @@ class User:
         self.email = email
         self._update()
 
-    def user_cart(self, itemID, cartID):
+    def view_cart(self, itemID, cartID):
         pass
 
     def delete_account(self):

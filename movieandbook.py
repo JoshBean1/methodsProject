@@ -1,4 +1,4 @@
-class Book():
+class Book:
     def _init_(self, ID, name, count, price):
         self.ID = ID
         self.name = name
@@ -16,7 +16,7 @@ class Book():
         return self.price
 
 
-class Movie():
+class Movie:
     def _init_(self, ID, name, count, price):
         self.ID = ID
         self.name = name

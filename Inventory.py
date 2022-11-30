@@ -1,4 +1,4 @@
-class Inventory():
+class Inventory:
 
     def __init__ (self, itemID, count, itemType, title, itemPrice):
         self.itemID = itemID
@@ -16,13 +16,13 @@ class Inventory():
         self.count = count
         return self.itemPrice + self.count
         
-    def veiew_all_items():
+    def view_all_items(self):
         import os
         files = [] #['movies' 'books']
         merged_data = ""
 
         while True:
-            f_name = input{"Enter the file name: "}
+            f_name = input("Enter the file name: ")
             files.append(f_name)
             ans = input("Want to view another file?(y/n): ").lower()
             if ans!='y':

@@ -1,4 +1,8 @@
-import User
+from User import User
+from Inventory import Inventory
+from movieandbook import *
+from cart import cart
+
 
 def print_menu(menu):
     for key in menu:
@@ -12,7 +16,7 @@ def login(USERNAME, PASS):  # if success, returns user class
         for line in lines:
 
             data = line.split(',')
-            user_list.append(User.User(data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
+            user_list.append(User(data[0], data[1], data[2], data[3], data[4], data[5], data[6]))
 
     current_user = None
 
@@ -26,12 +30,14 @@ def login(USERNAME, PASS):  # if success, returns user class
 def main_menu(current_user):
     menu = {}
     menu['1'] = "Edit User Information"
-    menu['2'] = "Cart Information"
-    menu['3'] = "Logout"
-    menu['4'] = "Exit Program"
-    menu['5'] = "Delete Account"
-    # menu['6'] = "Add Order"  I don't really know what it means to Add order.
-    menu['6'] = "Order History"
+    menu['2'] = "View/Edit Cart"
+    menu['3'] = "Shop"
+    menu['4'] = "Checkout"
+    menu['5'] = "Order History"
+    menu['6'] = "Logout"
+    menu['7'] = "Exit Program"
+    menu['8'] = "Delete Account"
+
 
     cart = {}
     inventory = {}
@@ -41,7 +47,6 @@ def main_menu(current_user):
     accounts = {}
     history = {}
 
-    # Add While loop over code so it will be continuous
 
     while True:
         print_menu(menu)
@@ -86,114 +91,99 @@ def main_menu(current_user):
                     print("That is not an Option")
                     selection = input(menu)
 
-        elif selection == '2':  # Cart information
+        elif selection == '2':  # view/edit cart; TODO- implement cart class
             menu_cart = {}
-            menu_cart['1'] = "View Cart"
-            menu_cart['2'] = "Add to Cart"
-            menu_cart['3'] = "Checkout"
-            menu_cart['4'] = "Back"
+            menu_cart['1'] = "View All"
+            menu_cart['2'] = "View Books"
+            menu_cart['3'] = "View Movies"
+            menu_cart['4'] = "Edit Cart"
+            menu_cart['5'] = "Back"
 
             while True:
                 print_menu(menu_cart)
                 selection = input(">> ")
-                # remove in View
 
-                if selection == '1':
-                    print(cart)
-                    menu_view = {}
-                    menu_view['1'] = "View Books"
-                    menu_view['2'] = "View Movies"
-                    menu_view['3'] = "Remove Book"
-                    menu_view['4'] = "Remove Movie"
-                    menu_view['5'] = "Back"
+                if selection == '1':  # view all
+                    print(cart)  # cart.view_all()
 
-                    while True:
-                        print_menu(menu_view)
+
+                elif selection == '2':  # view books
+                    pass  # cart.view_books()?
+
+
+                elif selection == '3':  # view movies
+                    pass  #
+
+                elif selection == '4':  # edit cart
+                    #  cart.view_all()
+
+                    menu_edit = {}
+                    menu_edit['1'] = "Remove Book"
+                    menu_edit['2'] = "Remove Movie"
+                    menu_edit['3'] = "Back"
+
+                    while True:  # TODO: cart class needs to be correctly implemented here
+                        print_menu(menu_edit)
                         selection2 = input(">> ")
 
-                        if selection2 == '1':
-                            print(books)
-                        elif selection2 == '2':
-                            print(movies)
-                        elif selection2 == '3':
-                            delete_book = {}
-                            delete_book = input("What book will you delete", books)
-                            cart = cart - delete_book
-                        elif selection2 == '4':
-                            delete_movie = {}
-                            delete_movie = input("What movie will you delete", movies)
-                            cart = cart - delete_movie
-                        elif selection2 == '5':
-                            break
-                        else:
-                            print("Invalid selection")
-
-                elif selection == '2':
-                    menu_add = {}
-                    menu_add['1'] = "Add Book"
-                    menu_add['2'] = "Add Movie"
-                    menu_add['3'] = "Back"
-                    while True:
-                        print_menu(menu_add)
-                        selection2 = input(">> ")
 
                         if selection2 == '1':
-                            book_choice = {}
-                            book_choice = input("What book would you like to add?")
-                            if book_choice in books:
-                                cart = cart + book_choice
-                            else:
-                                print("Not available")
-
+                            delete_book = input("What book will you delete? ")
+                            cart = cart - delete_book  # replace with correct cart function
                         elif selection2 == '2':
-                            movie_choice = {}
-                            movie_choice = input("What movie would you like to add?")
-                            if movie_choice in movies:
-                                cart = cart + movie_choice
-                            else:
-                                print("Not available")
+                            delete_movie = input("What movie will you delete? ")
+                            cart = cart - delete_movie  # see above
                         elif selection2 == '3':
                             break
                         else:
                             print("Invalid selection")
-
-                elif selection == '3':
-                    buy_now = input("Would you like to checkout Y/N: ")
-                    if buy_now == 'Y':
-                        for books in cart:
-                            books = books - books in cart  # check to see if this statement will work
-                        for movies in cart:
-                            movies = movies - movies in cart
-
-                        history = history + cart  # what does this do?
-
-                    elif buy_now == 'N':
-                        selection = input(menu_cart)
-
-                elif selection == '4':
+                elif selection == '5':
                     break
 
                 else:
                     print("Invalid selection")
 
-        elif selection == '3': # logout
-            logout = {}
+        elif selection == '3':
+            menu_shop = {}
+            menu_shop['1'] = "Shop for Books"
+            menu_shop['2'] = "Shop for Movies"
+            menu_shop['3'] = "Back"
+            while True:
+                print_menu(menu_shop)
+                selection = input(">> ")
+
+                if selection == '1':  # books
+                    #inventory.view_books()
+                    print("Which book do you want to add to your cart? Or type 'cancel' to go back.")
+                    toBuy = input(">> ")
+                    if toBuy != "cancel":
+                        pass  # cart.add_book or book.add_to_cart or something
+
+                elif selection == '2':  # movies
+                    #inventory.view_movies()
+                    print("Which movie do you want to add to your cart? Or type 'cancel' to go back.")
+                    toBuy = input(">> ")
+                    if toBuy != "cancel":
+                        pass  # cart.add_movie
+                elif selection == '3':
+                    break
+                else:
+                    print("Invalid selection")
+
+        elif selection == '6': # logout
             logout = input("Are you sure you'd like to logout? Y/N")
-            if logout == 'Y':
+            if logout.lower() == 'y' or logout.lower() == 'yes':
                 #current_user = None
                 break
 
-        elif selection == '4':
+        elif selection == '7':
             exit()
 
-        elif selection == '5':
+        elif selection == '8':
             acct_delete = input("Would you like to delete your account? Y/N: ")
             if acct_delete == 'Y':
                 current_user.delete_account()
                 break
-
-        elif selection == '6':
-            print(history)
 
 
 while True:
@@ -230,7 +220,7 @@ while True:
                 data = line.split(',')
                 user_list.append(int(data[0]))
         new_ID = str(max(user_list) + 1)
-        new_user = User.User(new_ID, username, password, name, payment_info, address, email, new=True)
+        new_user = User(new_ID, username, password, name, payment_info, address, email, new=True)
         print("User created")
     elif selection == '3':
         break
