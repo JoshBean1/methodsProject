@@ -9,7 +9,7 @@ dist()
 isPalindrome()
 divide() -- 
 sq() -- Zach
-greetUser()
+greetUser() -- Josh
 displayItem()
 '''
 
@@ -56,3 +56,20 @@ def test_sq_2():
 
 def test_sq_3():
     assert sq(25) == 5
+
+
+########   greetUser   ########
+def test_greetUser(capsys):
+    greetUser("Josh", "A", "Bean")
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == "Hello!\nWelcome to the program Josh A Bean\nGlad to have you!"
+
+def test_greetUser_datatype(capsys):
+    greetUser(1, [2,3], 4.5)
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == "Invalid input, please use strings"
+
+def test_greetUser_numbers(capsys):
+    greetUser("j0sh", "A", "22")
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == "Invalid input, please use letters only"

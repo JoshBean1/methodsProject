@@ -58,6 +58,13 @@ def sq(num):
 ## greets them by their entire name
 ## names should be strings
 def greetUser(first, middle, last):
+    if type(first) is not str or type(middle) is not str or type(last) is not str:
+        print("Invalid input, please use strings")
+        return
+    if not(first.isalpha()) or not(middle.isalpha()) or not(last.isalpha()):
+        print("Invalid input, please use letters only")
+        return
+
     print("Hello!")
     print("Welcome to the program", first, middle, last)
     print("Glad to have you!")
