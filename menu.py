@@ -19,6 +19,7 @@ with open('movies.txt', 'r') as movie_file:
         data = line.split(',')
         movie_list.append(Movie(data[0], data[1], data[2], data[3]))
 
+inventory = Inventory(book_list, movie_list)
 
 
 def print_menu(menu):
