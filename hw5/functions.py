@@ -32,8 +32,14 @@ def dist(x1, y1, x2, y2):
 ## takes in a string -- reverses it
 ## then compares the two
 def isPalindrome(temp):
-    test = temp[::-1]
-
+    try:
+        test = temp[::-1]
+    except:
+        print("Invalid input")
+        return
+    if type(temp) is not str:
+        print("Input string")
+        return
     if(test == temp):
         return True
 

@@ -35,16 +35,30 @@ def test_numbers_datatype():
 def test_numbers_zero():
     assert numbers(2, 0) == None
 ##############################
-    
+
+########   isPalindrome   ########
+def test_isPalindrome():
+    assert isPalindrome('tacocat') == True
+
+def test_isPalindrome_false():
+    assert isPalindrome('not a palindrome') == False
+
+def test_isPalindrome_datatype():
+    assert isPalindrome([1,2,1]) == None
+
+def test_isPalindrome_fail():
+    assert isPalindrome('abcdcba') == False
+
+
 ####################### divide #################
 def test_divide_1():
-	assert divide(6,2) == 3
+    assert divide(6,2) == 3
 
 def test_divide_2():
-	assert divide(12, 0) == None
+    assert divide(12, 0) == None
 
 def test_divide_3():
-	assert divide('Hello') == None
+    assert divide('Hello') == None
 
 
 
