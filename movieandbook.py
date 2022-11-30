@@ -8,7 +8,7 @@ class Book:
         self.price = price
 
     def __str__(self):
-        print(self.ID + '. ' + self.name + ' -> $' + self.price + ' (' + str(self.count) + ' left in stock) ')
+        return self.ID + '. ' + self.name + ' -> $' + self.price + ' (' + str(self.count) + ' left in stock) '
 
     def increment(self):
         self.count += 1
@@ -56,7 +56,7 @@ class Movie:
         self.price = price
 
     def __str__(self):
-        print(self.ID + '. ' + self.name + ' -> $' + self.price + ' (' + str(self.count) + ' left in stock) ')
+        return self.ID + '. ' + self.name + ' -> $' + self.price + ' (' + str(self.count) + ' left in stock) '
 
     def increment(self):
         self.count += 1
