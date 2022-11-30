@@ -40,12 +40,6 @@ def main_menu(current_user):
 
 
     cart = {}
-    inventory = {}
-    books = {}
-    movies = {}
-    total = {}
-    accounts = {}
-    history = {}
 
 
     while True:
@@ -169,6 +163,15 @@ def main_menu(current_user):
                     break
                 else:
                     print("Invalid selection")
+
+        elif selection == '4':  # checkout
+            #cart.checkout()
+            pass
+
+        elif selection == '5':  # view order history
+            with open("order_history.csv", 'r') as history:
+                for lines in history.readlines():
+                    print(line)  # make this more pretty
 
         elif selection == '6': # logout
             logout = input("Are you sure you'd like to logout? Y/N")
