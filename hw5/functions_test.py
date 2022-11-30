@@ -9,6 +9,7 @@ dist()
 isPalindrome()
 divide() -- 
 sq() -- Zach
+displayItem()--Zach
 '''
 
 ########   openFile   ########
@@ -99,4 +100,23 @@ def test_greetUser_numbers(capsys):
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == "Invalid input, please use letters only"
 
+######## displayItem #########
+def displayItem(numbers, index):
+    numbers = "20"
+    print("Your item at", index, "index is", numbers[index])
 
+
+def test_displayItem(capsys):
+    displayItem(20, 1)
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() != "Your item at 1 index is 20[1]"
+
+def test_displayItem_2(capsys):
+    displayItem(0, 1)
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == "Your item at 1 index is 0"
+
+def test_displayItem_3(capsys):
+    displayItem(3, 1)
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() != "Your item at 1 index is 20[1]"
