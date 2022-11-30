@@ -52,15 +52,32 @@ def test_isPalindrome_fail():
 
 
 ####################### divide #################
-def test_divide_1():
-    assert divide(6,2) == 3
+def geninputs():
+	inputs = ["6", "2"]
+	for item in inputs:
+		yield item
+GEN = geninputs()
+def test_input_1(monkeypatch):
+	monkeypatch.setattr('builtins.input', lambda _: next(GEN))
+	assert inputTest() == 3.0
 
-def test_divide_2():
-    assert divide(12, 0) == None
+def geinputus():
+	inputs = ["12", "0"]
+	for item in inputs:
+		yield item
+GEN = geninputs()
+def test_input_2(monkeypatch):
+	monkeypatch.setattr('builtins.input', lambda _: next(GEN))
+	assert inputTest() == None
 
-def test_divide_3():
-    assert divide('Hello') == None
-
+defgeninputs():
+	inputs = ["Hello"]
+	for item in inputs:
+		yield item
+GEN = geninputs()
+def test_input_3(monkeypatch):
+	monkeypatch.setattr('builtins.imput', lambda _: next(GEN))
+	assert inputTEst() == None
 
 
 ################ sq ######################
