@@ -20,6 +20,16 @@ class Inventory:
         self.view_movies()
         print()
 
+    def get_book_ID(self, ID):
+        for book in self.book_list:
+            if book.ID == ID:
+                return book
+
+    def get_movie_ID(self, ID):
+        for movie in self.movie_list:
+            if movie.ID == ID:
+                return movie
+
     def checkoutBook(self, ID):
         for book in self.book_list:
             if book.ID == ID:
