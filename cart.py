@@ -1,123 +1,118 @@
-class Item:
-    def __init__(self, itemID, name, price, amnt, type):
-        self.ID = itemID
-        self.name = name
-        self.price = price
-        self.amnt = amnt
-        self.type = type
-
-    def get_ID(self):
-        return self.ID
-
-    def get_name(self):
-        return self.name
-
-    def get_price(self):
-        return self.price
-
-    def get_amnt(self):
-        return self.amnt
-
-    def get_type(self):
-        return self.type
-
-    def set_ID(self, ID):
-        self.ID = ID
-
-    def set_name(self, name):
-        self.name = name
-
-    def set_price(self, price):
-        self.price = price
-
-    def set_amnt(self, amnt):
-        self.amnt = amnt
-
-    def add_amnt(self, amnt):
-        self.amnt = (self.get_amnt() + amnt)
-
-    def set_type(self, type):
-        self.type = type
-
-
 class Cart:
     # Define Cart as an object with a Cart ID and User ID
-    # as well as a Dictionary containing a set of Items.
+    # as well as two lists containing individual sets of Books and Movies, respectively.
     def __init__(self, cartID, userID):
         self.ID = cartID
         self.userID = userID
-        self.items = dict()
+        self.books = []
+        self.movies = []
 
-    # Adds an item to the current cart
-    # Returns a 0 if the item was added and there were no duplicates
-    # Returns a 1 if there was a duplicate item present, and the item's amount was changed
-    # Returns a -1 on error (Item not added to list)
-    def add_item(self, item):
-        # Check if cart is empty
-        if (not (self.items)):
-            self.items.update({item.get_ID():item})
-        # Check new item's ID against other items currently in the cart
-        for i in self.items:
-            # If the new item's ID doesn't match the current checked item's ID, continue
-            if i != item.get_ID():
-                continue
-            # If the new Item's ID matches the current checked item's ID, add the new item's Amount to the checked item's Amount
-            # and follow with a Return so the function completes
-            elif i == item.get_ID():
-                self.items[i].add_amnt(item.amnt)
+
+    def add_book(self, book): # Attempts to add a book to the Books list.
+        keyCount = 0          # Returns 0 if book was appended to end of list, 1 if the book was already in the list (count will be updated), and -1 on error.
+        numBooks = len(self.books)
+        if (numBooks == 0):
+            self.books.append(book)
+            return 0
+        for bookKey in self.books:
+            if self.books[keyCount].ID == book.ID: # Book duplicate ID found in list, add to the Count of the found book and return 1
+                self.books[keyCount].count = self.books[keyCount].count + book.count
                 return 1
-            # If all items have been checked and no items' IDs match the new item's ID, add the new item to the end of the list
-            if i == (self.items.len() - 1):
-                self.items.update({item.get_ID(): item})
-                return 0
+            else: # No duplicate ID found in Books list, continue search until end of list found
+                keyCount = keyCount + 1
+                if (keyCount >= len(self.books)): # If the end of the list is found, then add the new book to the end of the list and return 0
+                    self.books.append(book)
+                    return 0
+                else:
+                    continue
         return -1
 
-    # Gets the total number of items in the cart
-    def get_num_items(self):
+
+    def add_movie(self, movie): # Attempts to add a movie to the Movies list.
+        keyCount = 0            # Returns 0 if movie was appended to end of list, 1 if the movie was already in the list (count will be updated), and -1 on error.
+        numMovies = len(self.movies)
+        if (numMovies == 0):
+            self.movies.append(movie)
+            return 0
+        for movieKey in self.movies:
+            if self.movies[keyCount].ID == movie.ID: # Movie duplicate ID found in list, add to the Count of the found movie and return 1
+                self.movies[keyCount].count = self.movies[keyCount].count + movie.count
+                return 1
+            else: # No duplicate ID found in Movies list, continue search until end of list found
+                keyCount = keyCount + 1
+                if (keyCount >= len(self.movies)): # If the end of the list is found, then add the new movie to the end of the list and return 0
+                    self.movies.append(movie)
+                    return 0
+                else:
+                    continue
+        return -1
+
+
+    def get_num_items(self): # Gets the total number of items in the cart
         total_items = 0
-        for i in self.items:
-            total_items = total_items + self.items[i].get_amnt()
+        for item in self.books:
+            total_items = total_items + item.count
+        for item in self.movies:
+            total_items = total_items + item.count
         return total_items
 
-    # Removes an item from the cart based on its position in the Cart List
-    def remove_item_index(self, item_key):
-        self.items.pop(item_key)
 
-    # Removes an item from the cart based on its Item ID
-    def remove_item_ID(self, item_ID):
-        self.items.pop(item_ID)
+    def remove_book_index(self, item_key): # Removes a book from the cart based on its position in the Cart's Book List
+        self.books.pop(item_key)
         return
 
-    # Clears all items from the cart, returns the number of items removed upon completion
-    def remove_all_items(self):
-        num_removed = 0
-        for i in self.items:
-            num_removed = num_removed + self.items[i].get_amnt()
-            self.items.pop(i)
-        return num_removed
+    
+    def remove_movie_index(self, item_key): # Removes a movie from the cart based on its position in the Cart's Movie List
+        self.movie.pop(item_key)
+        return
 
-    # Gets and returns the total price of all items within the cart at once
-    def get_total_price(self):
-        total = 0
-        for i in self.items:
-            total = total + self.items[i].get_price()
-        return total
+    
+    def remove_item_ID(self, item_ID): # Removes an item from the cart based on its Item ID
+        for item in self.books:
+            if (item.ID == item_ID):
+                self.books.remove(item)
+        for item in self.movies:
+            if (item.ID == item_ID):
+                self.movies.remove(item)
+        return
+
+    
+    def remove_all_items(self): # Clears all items from the cart, returns the number of items removed upon completion
+        total_num_removed = self.get_num_items()
+        self.books.clear()
+        self.movies.clear()
+        return total_num_removed
+
+    
+    def get_total_price(self): # Gets and returns the total price of all items within the cart at once
+        price = 0
+        for item in self.books:
+            price = price + (int(item.price)) * item.count
+        for item in self.movies:
+            price = price + (int(item.price)) * item.count
+        return price
 
 
+    def print_items_and_price(self): # Prints out an easy-to-view statistic of the number of items in and total price of the cart
+        print("You have %i items in your cart for a total of $%.02f" % (self.get_num_items(), self.get_total_price()))
+        return
+
+    
+    def view_books(self): # Prints out each Book within the list formatted as follows: - ID, Name, Count, Price
+        for book in self.books:
+            print(" - ISBN: ", book.ID, ", Title: \"", book.name, "\", Count: ", book.count, ", Cost: $%.02f" % int(book.price), "\n", end = '', sep = '')
+        return
 
 
-item1 = Item(1, "Book1", 10., 1, "Book")
-item2 = Item(2, "Movie1", 9., 2, "Movie")
-item3 = Item(3, "Book2", 8., 1, "Book")
-item4 = Item(1, "Book1", 10., 2, "Book")
+    def view_movies(self): # Prints out each Movie within the list formatted as follows: - ID, Name, Count, Price
+        for movie in self.movies:
+            print(" - ISBN: ", movie.ID, ", Title: \"", movie.name, "\", Count: ", movie.count, ", Cost: $%.02f" % int(movie.price), "\n", end = '', sep = '')
+        return
 
-cart = Cart(100, 10000)
 
-cart.add_item(item1)
-cart.add_item(item2)
-cart.add_item(item3)
-cart.add_item(item4)
-
-print("You have %i items in your cart for a total of $%.02f" % (cart.get_num_items(), cart.get_total_price()))
-cart.remove_item_ID(1)
-print("You have %i items in your cart for a total of $%.02f" % (cart.get_num_items(), cart.get_total_price()))
+    def view_cart(self): # Prints out each item within the list.
+        print("Books: ")
+        self.view_books()
+        print("\nMovies: ")
+        self.view_movies()
+        return
