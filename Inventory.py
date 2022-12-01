@@ -1,3 +1,5 @@
+from movieandbook import *
+
 class Inventory:
     def __init__ (self, book_list, movie_list):
         self.book_list = book_list  # list of book class instances
@@ -23,12 +25,14 @@ class Inventory:
     def get_book_ID(self, ID):
         for book in self.book_list:
             if book.ID == ID:
-                return book
+                bookReturned = Book(book.ID, book.name, 1, book.price)
+                return bookReturned
 
     def get_movie_ID(self, ID):
         for movie in self.movie_list:
             if movie.ID == ID:
-                return movie
+                movieReturned = Movie(movie.ID, movie.name, 1, movie.price)
+                return movieReturned
 
     def checkoutBook(self, ID):
         for book in self.book_list:
