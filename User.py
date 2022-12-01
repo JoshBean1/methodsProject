@@ -60,6 +60,6 @@ class User:
                 if self.ID != row[0]:  # read all users into list except for current user
                     lines.append(row)
         with open('users.csv', 'w') as users_file:  # overwrite users.csv file with updated data
-            users_write = csv.writer(users_file, delimiter=',')
+            users_write = csv.writer(users_file, delimiter=',', lineterminator='\n')
             users_write.writerows(lines)  # old unchanged users
             users_write.writerow(current_user)  # new user
