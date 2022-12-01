@@ -31,6 +31,8 @@ def main_menu(current_user):
     book_list = list()
     movie_list = list()
 
+    user_cart = Cart(current_user.ID)
+
     with open('books.txt', 'r') as book_file:
         lines = book_file.readlines()
         for line in lines:
@@ -115,15 +117,15 @@ def main_menu(current_user):
                 selection = input(">> ")
 
                 if selection == '1':  # view all
-                    print(cart)  # cart.view_all()
+                    user_cart.view_cart()
 
 
                 elif selection == '2':  # view books
-                    pass  # cart.view_books()?
+                    user_cart.view_books()
 
 
                 elif selection == '3':  # view movies
-                    pass  #
+                    user_cart.view_movies()
 
                 elif selection == '4':  # edit cart
                     #  cart.view_all()
@@ -139,11 +141,13 @@ def main_menu(current_user):
 
 
                         if selection2 == '1':
-                            delete_book = input("What book will you delete? ")
-                            cart = cart - delete_book  # replace with correct cart function
+                            user_cart.view_books()
+                            delete_book = input("What book will you delete? (Enter the ID of the book): ")
+                            user_cart.remove_book_ID(delete_book)  # replace with correct cart function
                         elif selection2 == '2':
-                            delete_movie = input("What movie will you delete? ")
-                            cart = cart - delete_movie  # see above
+                            user_cart.view_movies()
+                            delete_movie = input("What movie will you delete? (Enter the ID of the movie): ")
+                            user_cart.remove_movie_ID(delete_movie)  # see above
                         elif selection2 == '3':
                             break
                         else:
@@ -168,24 +172,48 @@ def main_menu(current_user):
                     print("Which book do you want to add to your cart? Or type 'cancel' to go back.")
                     toBuy = input(">> ")
                     if toBuy != "cancel":
-                        pass  # cart.add_book or book.add_to_cart or something
+                        addBook = inventory.get_book_ID(toBuy)
+                        user_cart.add_book(addBook)
 
                 elif selection == '2':  # movies
                     inventory.view_movies()
                     print("Which movie do you want to add to your cart? Or type 'cancel' to go back.")
                     toBuy = input(">> ")
                     if toBuy != "cancel":
-                        pass  # cart.add_movie
+                        addMovie = inventory.get_movie_ID(toBuy)
+                        user_cart.add_movie(addMovie)
                 elif selection == '3':
                     break
                 else:
                     print("Invalid selection")
 
         elif selection == '4':  # checkout
-            #cart.checkout()
+            for key in user_cart.books:
+                i = 0
+                while i < key.count:
+                    inventory.checkoutBook(key.ID)
+                    i = i + 1
+
+            for key in user_cart.movies:
+                i = 0
+                while i < key.count:
+                    print("Checked out ", key.name, " from inventory.\n")
+                    inventory.checkoutMovie(key.ID)
+                    i = i + 1
+
+            with open('order_history.csv', 'r') as orders_file:
+                lines = ''
+                orders_read = csv.reader(orders_file, delimiter=',')
+                for row in orders_read:
+                    lines.append(row)
+            with open('order_history.csv', 'w') as orders_file:  # overwrite users.csv file with updated data
+                orders_write = csv.writer(orders_file, delimiter=',')
+                orders_write.writerows(lines)  # old unchanged users
+
+
+            user_cart.remove_all_items()
 
             #  add order to order_history.csv
-            pass
 
         elif selection == '5':  # view order history
             with open("order_history.csv", 'r') as history:
