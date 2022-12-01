@@ -193,8 +193,8 @@ def main_menu(current_user):
                 i = 0
                 while i < key.count:
                     order_list.append(inventory.get_book_ID(key.ID))
+                    print("Checked out ", key.name, " from inventory.\n")
                     inventory.checkoutBook(key.ID)
-
                     i = i + 1
 
             for key in user_cart.movies:
