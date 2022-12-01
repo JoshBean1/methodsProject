@@ -3,9 +3,8 @@ from movieandbook import *
 class Cart:
     # Define Cart as an object with a Cart ID and User ID
     # as well as two lists containing individual sets of Books and Movies, respectively.
-    def __init__(self, cartID, userID):
+    def __init__(self, cartID):
         self.ID = cartID
-        self.userID = userID
         self.books = []
         self.movies = []
 
@@ -59,24 +58,28 @@ class Cart:
         return total_items
 
 
-    def remove_book_index(self, item_key): # Removes a book from the cart based on its position in the Cart's Book List
-        self.books.pop(item_key)
-        return
-
-    
-    def remove_movie_index(self, item_key): # Removes a movie from the cart based on its position in the Cart's Movie List
-        self.movie.pop(item_key)
-        return
-
-    
-    def remove_item_ID(self, item_ID): # Removes an item from the cart based on its Item ID
+    def remove_book_ID(self, item_ID): # Removes a book from the cart based on its position in the Cart's Book List
         for item in self.books:
             if (item.ID == item_ID):
                 self.books.remove(item)
+        return
+
+    
+    def remove_movie_ID(self, item_ID): # Removes a book from the cart based on its position in the Cart's Movie List
         for item in self.movies:
             if (item.ID == item_ID):
                 self.movies.remove(item)
         return
+
+    
+   ##def remove_item_ID(self, item_ID): # Removes an item from the cart based on its Item ID
+   ##    for item in self.books:
+   ##        if (item.ID == item_ID):
+   ##            self.books.remove(item)
+   ##    for item in self.movies:
+   ##        if (item.ID == item_ID):
+   ##            self.movies.remove(item)
+   ##    return
 
     
     def remove_all_items(self): # Clears all items from the cart, returns the number of items removed upon completion
@@ -102,13 +105,13 @@ class Cart:
     
     def view_books(self): # Prints out each Book within the list formatted as follows: - ID, Name, Count, Price
         for book in self.books:
-            print(" - ISBN: ", book.ID, ", Title: \"", book.name, "\", Count: ", book.count, ", Cost: $%.02f" % int(book.price), "\n", end = '', sep = '')
+            print(" - ISBN: ", book.ID, ", Title: \"", book.name, "\", Count: ", book.count, ", Cost: $%.02f" % float(book.price), "\n", end = '', sep = '')
         return
 
 
     def view_movies(self): # Prints out each Movie within the list formatted as follows: - ID, Name, Count, Price
         for movie in self.movies:
-            print(" - ISBN: ", movie.ID, ", Title: \"", movie.name, "\", Count: ", movie.count, ", Cost: $%.02f" % int(movie.price), "\n", end = '', sep = '')
+            print(" - ISBN: ", movie.ID, ", Title: \"", movie.name, "\", Count: ", movie.count, ", Cost: $%.02f" % float(movie.price), "\n", end = '', sep = '')
         return
 
 
@@ -117,4 +120,5 @@ class Cart:
         self.view_books()
         print("\nMovies: ")
         self.view_movies()
+        print("\n")
         return
