@@ -31,7 +31,7 @@ class Book:
                     lines.append(row)
 
         with open('books.txt', 'w') as books_file:  # overwrite books.txt file with updated data
-            books_write = csv.writer(books_file, delimiter=',')
+            books_write = csv.writer(books_file, delimiter=',', lineterminator='\n')
             books_write.writerows(lines)  # old unchanged books
 
     def _update(self):  # write class to csv file
@@ -46,7 +46,7 @@ class Book:
                 else:
                     lines.append([self.ID, self.name, str(self.count), self.price])  # updated info
         with open('books.txt', 'w') as books_file:  # overwrite books.csv file with updated data
-            books_write = csv.writer(books_file, delimiter=',')
+            books_write = csv.writer(books_file, delimiter=',', lineterminator='\n')
             books_write.writerows(lines)
 
 
@@ -61,11 +61,11 @@ class Movie:
         return self.ID + '. ' + self.name + ' -> $' + self.price + ' (' + str(self.count) + ' left in stock) '
 
     def increment(self):
-        self.count += 1
+        self.count = self.count + 1
         self._update()
 
     def decrement(self):
-        self.count -= 1
+        self.count = self.count - 1
         if self.count == 0:
             self.delete_movie()
         else:
@@ -80,7 +80,7 @@ class Movie:
                 if self.ID != row[0]:  # read all movies into list except for current movie
                     lines.append(row)
         with open('movies.txt', 'w') as movies_file:  # overwrite movies.txt file with updated data
-            movies_write = csv.writer(movies_file, delimiter=',')
+            movies_write = csv.writer(movies_file, delimiter=',', lineterminator='\n')
             movies_write.writerows(lines)  # old unchanged movies
 
     def _update(self):  # write class to csv file
@@ -95,6 +95,6 @@ class Movie:
                 else:
                     lines.append([self.ID, self.name, str(self.count), self.price])  # updated info
         with open('movies.txt', 'w') as movies_file:  # overwrite movies.csv file with updated data
-            movies_write = csv.writer(movies_file, delimiter=',')
+            movies_write = csv.writer(movies_file, delimiter=',', lineterminator='\n')
             movies_write.writerows(lines) 
 
