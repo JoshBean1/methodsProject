@@ -1,3 +1,5 @@
+from movieandbook import *
+
 class Cart:
     # Define Cart as an object with a Cart ID and User ID
     # as well as two lists containing individual sets of Books and Movies, respectively.
