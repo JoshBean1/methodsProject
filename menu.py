@@ -46,7 +46,7 @@ def main_menu(current_user):
             movie_list.append(Movie(data[0], data[1], data[2], data[3]))
 
     inventory = Inventory(book_list, movie_list)
-    cart = None  # cart class
+    order_history = list()
 
 
     menu = {}
@@ -188,37 +188,34 @@ def main_menu(current_user):
                     print("Invalid selection")
 
         elif selection == '4':  # checkout
+            order_list = list()
             for key in user_cart.books:
                 i = 0
                 while i < key.count:
+                    order_list.append(inventory.get_book_ID(key.ID))
                     inventory.checkoutBook(key.ID)
+
                     i = i + 1
 
             for key in user_cart.movies:
                 i = 0
                 while i < key.count:
+                    order_list.append(inventory.get_movie_ID(key.ID))
                     print("Checked out ", key.name, " from inventory.\n")
                     inventory.checkoutMovie(key.ID)
                     i = i + 1
-
-            with open('order_history.csv', 'r') as orders_file:
-                lines = ''
-                orders_read = csv.reader(orders_file, delimiter=',')
-                for row in orders_read:
-                    lines.append(row)
-            with open('order_history.csv', 'w') as orders_file:  # overwrite users.csv file with updated data
-                orders_write = csv.writer(orders_file, delimiter=',')
-                orders_write.writerows(lines)  # old unchanged users
-
+            order_history.append(order_list)
 
             user_cart.remove_all_items()
 
-            #  add order to order_history.csv
 
         elif selection == '5':  # view order history
-            with open("order_history.csv", 'r') as history:
-                for lines in history.readlines():
-                    print(line)  # make this more pretty
+            index = 1
+            for order in order_history:
+                print("Order", index)
+                for item in order:
+                    print(item.name, '$' +  item.price)
+                index += 1
 
         elif selection == '6': # logout
             logout = input("Are you sure you'd like to logout? Y/N: ")
